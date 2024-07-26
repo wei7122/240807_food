@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ============== 輪播css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/swiper.min.css" />
+  <!-- ============== 共用css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/animate.min.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/generate_v1.5.7.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/build.css" />
+
+  <!-- [電梯步驟1] 電梯CSS 不用就關掉 -->
+  <!-- 商品左電梯CSS，要使用還要在步驟2開啟左電梯data資料 -->
+  <!-- <link id="localElevatorLeft" rel="stylesheet" href="sp-elevator-left.css"> -->
+
+  <!-- 商品右電梯CSS，步驟2有測試div可以測試 -->
+  <link id="localElevatorRight" rel="stylesheet" href="sp-elevator-right.css" />
+  <!-- [電梯步驟1] 電梯CSS END -->
+
+  <style>
+    body {
+      background-color: #0a436e;
+      /* width: 100vw; */
+    }
+
+    body:before {
+      background: url(bg-m.jpg) center 0 no-repeat;
+      background-size: 100%;
+      /* width: 100vw; */
+    }
+
+    @media screen and (min-width: 960px) {
+      body:before {
+        background: url(bg.gif) center 0 no-repeat;
+        background-size: auto;
+      }
+    }
+
+    /* 調整logo位置大小 */
+    /* .logo{  
+      top: 1vw;
+      left: 1vw;
+      width: 30%;
+    } */
+
+    /* 調整大網logo */
+    @media screen and (min-width:960px) {
+      .logo {
+        top: 0px;
+        left: calc(50% - 480px);
+        width: 30%;
+        max-width: 220px;
+      }
+    }
+
+    /* == 影片 == */
+    .video__wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    /*-- 手機版  --*/
+    .video__wrap .video__obj--01 {
+      position: absolute;
+      top: 648.5vw;
+      left: 2vw;
+      width: 96%;
+      height: 54vw;
+    }
+
+    /*-- 電腦版 --*/
+    @media screen and (min-width: 960px) {
+      .video__wrap .video__obj--01 {
+        top: 6225px;
+        left: calc(50% - 467px);
+        width: 933px;
+        height: 523px;
+      }
+    }
+
+
+    /* 動畫小物件 */
+    /*-- 手機版：設定物件距離左邊與上邊的位置，單位可以使用"%"或"vw";width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    .animate__obj--01 {
+      position: fixed;
+      z-index: 1;
+      top: 0vw;
+      left: -95%;
+      width: 0%;
+      pointer-events: none;
+    }
+
+    .animate__obj--02 {
+      position: fixed;
+      z-index: 1;
+      top: 0vw;
+      left: -95%;
+      width: 0%;
+      pointer-events: none;
+    }
+
+    .animate__obj--03 {
+      position: fixed;
+      z-index: 0;
+      top: 68vw;
+      left: 13%;
+      width: 0%;
+      pointer-events: none;
+    }
+
+    .animate__obj--04 {
+      position: fixed;
+      z-index: 0;
+      top: 68vw;
+      left: 13%;
+      width: 0%;
+      pointer-events: none;
+      transform-origin: top left;
+      animation: swing 8s infinite ease-in-out;
+    }
+
+    .animate__obj--05 {
+      position: fixed;
+      z-index: 1;
+      top: 68vw;
+      left: 13%;
+      width: 0%;
+      pointer-events: none;
+      transform-origin: top right;
+      animation: swing 6s infinite ease-in-out;
+    }
+
+    .animate__obj--06 {
+      position: absolute;
+      z-index: 1;
+      top: 6vw;
+      left: 5%;
+      width: 90%;
+      pointer-events: none;
+      animation: bounce-in-bck 1s both;
+    }
+
+    .animate__obj--07 {
+      position: absolute;
+      z-index: 1;
+      top: 26vw;
+      left: 8%;
+      width: 26%;
+      pointer-events: none;
+      animation: jackInTheBox .5s both;
+      animation-delay: 1s;
+    }
+
+    .animate__obj--08 {
+      position: absolute;
+      z-index: 1;
+      top: 25vw;
+      left: 28.3%;
+      width: 23%;
+      pointer-events: none;
+      animation: jackInTheBox .5s both;
+      animation-delay: 1.5s;
+    }
+
+    /*-- 電腦版：設定物件距離左邊與上邊的位置，單位可以使用"px"，左邊可以挑整clac()後面的px值;width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    @media screen and (min-width:960px) {
+      .animate__obj--01 {
+        top: 0px;
+        left: calc(50% - 1280px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--02 {
+        top: 0px;
+        left: calc(50% - 1280px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--03 {
+        top: 270px;
+        left: calc(50% - 910px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--04 {
+        top: -210px;
+        left: calc(50% - 1550px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--05 {
+        top: -300px;
+        left: calc(50% - -400px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--06 {
+        top: 30px;
+        left: calc(50% - 437px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--07 {
+        top: 222px;
+        left: calc(50% - 411px);
+        width: auto
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--08 {
+        top: 213px;
+        left: calc(50% - 209px);
+        width: auto
+      }
+    }
+
+    @keyframes swing {
+      0% {
+        transform: rotate(-3deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(-3deg);
+      }
+    }
+
+    @keyframes bounce-in-bck {
+  0% {
+            transform: scale(7);
+            animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+            transform: scale(1);
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+            transform: scale(1.5);
+            animation-timing-function: ease-in;
+  }
+  72% {
+            transform: scale(1);
+            animation-timing-function: ease-out;
+  }
+  81% {
+            transform: scale(1.24);
+            animation-timing-function: ease-in;
+  }
+  89% {
+            transform: scale(1);
+            animation-timing-function: ease-out;
+  }
+  95% {
+            transform: scale(1.04);
+            animation-timing-function: ease-in;
+  }
+  100% {
+            transform: scale(1);
+            animation-timing-function: ease-out;
+  }
+}
+
+  </style>
+
+</head>
+
+<body class="bg-fixed">
+
+  <div class="navRightBar" id="navRightBar"></div>
+  <div class="elevatorHome js--main--dialog" id="elevatorHome"></div>
+  <div id="barHome"></div>
+  <div class="home--icon layout--main" id="iconHome"></div>
+
+
+  <div class="sp__wrap" id="spWrap">
+
+    <!-- logo -->
+    <div class="logo">
+      <a href="https://www.etmall.com.tw/">
+        <img src="ehs-logo.png" alt="東森購物">
+      </a>
+    </div>
+
+    <!-- 影片 -->
+    <div class="video__wrap">
+      <iframe class="video__obj--01" width="560" height="315"
+        src="https://www.youtube.com/embed/GBN5tGpkED0?si=gwPxzfqCSNREEIER" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+
+    <!-- 動畫小物件 -->
+    <div class="animate__obj--02 animate__animated"><img src="fix02.png" alt=""></div>
+    <div class="animate__obj--01 animate__animated"><img src="fix01.png" alt=""></div>
+    <div class="animate__obj--03 animate__animated"><img src="rabbit.gif" alt=""></div>
+    <div class="animate__obj--04 animate__animated"><img src="tree01.png" alt=""></div>
+    <div class="animate__obj--05 animate__animated"><img src="tree02.png" alt=""></div>
+    <div class="animate__obj--06 animate__animated"><img src="T.gif" alt=""></div>
+    <div class="animate__obj--07 animate__animated"><img src="T01.png" alt=""></div>
+    <div class="animate__obj--08 animate__animated"><img src="T02.png" alt=""></div>
+
+    <!-- 版頭主視覺 -->
+    <main class="sp__main">
+      <section class="sp__visual">
+        <div class="layout--main">
+          <ul class="visual--auto clearfix">
+            <li class="visual__fragment width--auto"><img src="index_01.png" alt=""></li>
+            <li class="visual__fragment width--auto"><img src="index_02.png" alt=""></li>
+            <li class="visual__fragment width--auto"><img src="index_03.png" alt=""></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_04.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><img src="index_05.png" alt=""></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_06.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><img src="index_07.png" alt=""></li>
+            <li class="visual__fragment width--auto"><img src="index_08.png" alt=""></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_09.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_10.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/i/3477577"><img src="index_11.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/i/7517833"><img src="index_12.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/i/7513183"><img src="index_13.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/i/2713794"><img src="index_14.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_15.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><img src="index_16.png" alt=""></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_17.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_18.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_19.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_20.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_21.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_22.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><img src="index_23.png" alt=""></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+
+
+  <!-- ============== 共用JS ============== -->
+  <script src="https://media.etmall.com.tw/sp/12500/jquery-3.6.0.min.js"></script>
+  <script src="https://media.etmall.com.tw/sp/12500/swiper.min.js"></script>
+  <script src="https://media.etmall.com.tw/sp/12500/generate_v1.5.7.js"></script>
+  <!--[電梯步驟2] 電梯 JS -->
+  <!-- 商品左電梯單機版資料，不用就關掉，要使用還要上方步驟1開啟商品左電梯CSS -->
+  <!-- <script id="dataElevatorLeft" src="data-elevator.js"></script> -->
+
+  <!-- 線上自動切換電梯，無論如何都要有 -->
+  <script id="checkElevator" src="https://media.etmall.com.tw/sp/11911/check-elevator.js"></script>
+  <!-- [電梯步驟2] 電梯 JS END -->
+
+  <!-- [測試區] -->
+  <!-- 測試商品右電梯用，上線前必須關掉 -->
+  <!-- <div data-title="ccc"></div> -->
+  <!-- 測試霸道電梯用，開啟時上方自動切換電梯要關閉，這支正式上線時需關閉、上方的要開啟回來 -->
+  <!-- <script id="checkElevator" src="https://media.etmall.com.tw/sp/14841/test-elevator.js?87"></script> -->
+
+
+
+
+
+
+
+
+</body>
+
+</html>
